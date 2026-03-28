@@ -2,8 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>App Adriana Presidente - Otimizado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>App Adriana Presidente</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -11,7 +11,8 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: #000; /* Fundo de segurança */
+            /* Cor de fundo inspirada no entardecer da sua imagem */
+            background: #f4d0b5; 
         }
 
         .container {
@@ -19,18 +20,20 @@
             width: 100vw;
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Fundo degradê suave para integrar a imagem no celular */
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            /* Degradê que imita o pôr do sol para preencher o resto da tela */
+            background: linear-gradient(to bottom, #f9e5d8 0%, #f4d0b5 50%, #e8b08d 100%);
         }
 
-        /* Imagem centralizada e mostrada INTEIRA, sem cortes nas laterais */
+        /* Ajuste para a imagem aparecer INTEIRA na largura do iPhone */
         .capivara {
+            width: 100%; /* Força a imagem a ocupar toda a largura disponível */
+            height: auto; /* Deixa a altura proporcional para não cortar as laterais */
             max-width: 100%;
-            max-height: 100%;
-            object-fit: contain; /* GARANTE QUE A IMAGEM APAREÇA TODA */
             z-index: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra leve para destacar */
         }
 
         #chuva {
