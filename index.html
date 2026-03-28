@@ -2,17 +2,17 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>App Adriana Presidente</title>
     <style>
+        /* Reset para tela cheia total */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body, html {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            /* Cor de fundo inspirada no entardecer da sua imagem */
-            background: #f4d0b5; 
+            background: #000;
         }
 
         .container {
@@ -20,22 +20,37 @@
             width: 100vw;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Degradê que imita o pôr do sol para preencher o resto da tela */
-            background: linear-gradient(to bottom, #f9e5d8 0%, #f4d0b5 50%, #e8b08d 100%);
+            background-color: #f4d0b5;
         }
 
-        /* Ajuste para a imagem aparecer INTEIRA na largura do iPhone */
-        .capivara {
-            width: 100%; /* Força a imagem a ocupar toda a largura disponível */
-            height: auto; /* Deixa a altura proporcional para não cortar as laterais */
-            max-width: 100%;
+        /* FUNDO DESFOCADO PARA PREENCHER O VAZIO (Efeito Profissional) */
+        .fundo-blur {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('capivara_engenheira.png');
+            background-size: cover;
+            background-position: center;
+            filter: blur(20px) brightness(0.8);
+            transform: scale(1.1);
             z-index: 1;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Sombra leve para destacar */
         }
 
+        /* IMAGEM PRINCIPAL (Ajustada para o iPhone) */
+        .capivara {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            /* O segredo está aqui: aumenta um pouco para a obra aparecer mas não sumir */
+            object-fit: cover; 
+            object-position: center;
+            z-index: 2;
+            box-shadow: 0 0 100px rgba(0,0,0,0.5);
+        }
+
+        /* CAMADA DA CHUVA DE CORAÇÕES */
         #chuva {
             position: absolute;
             top: 0;
@@ -54,12 +69,13 @@
 
         .lilas {
             color: #b19cd9;
-            text-shadow: 0 0 10px rgba(177, 156, 217, 0.8);
+            text-shadow: 0 0 15px rgba(177, 156, 217, 1);
+            font-size: 30px;
         }
 
         @keyframes queda {
             from { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-            to { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
+            to { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
         }
 
         @keyframes pulsar {
@@ -71,7 +87,10 @@
 <body>
 
     <div class="container">
+        <div class="fundo-blur"></div>
+        
         <img src="capivara_engenheira.png" class="capivara">
+        
         <div id="chuva"></div>
     </div>
 
@@ -86,14 +105,14 @@
             
             const duracao = Math.random() * 3 + 3;
             div.style.left = Math.random() * 100 + 'vw';
-            div.style.fontSize = Math.random() * 20 + 15 + 'px';
+            div.style.fontSize = Math.random() * 20 + 20 + 'px';
             div.style.animationDuration = duracao + 's, 1.5s';
 
             chuva.appendChild(div);
             setTimeout(() => div.remove(), duracao * 1000);
         }
 
-        setInterval(criarItem, 200);
+        setInterval(criarItem, 150);
     </script>
 </body>
 </html>
